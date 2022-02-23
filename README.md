@@ -1,6 +1,6 @@
 ## Java Build Pack
 
-[![build](https://github.com/aem-design/docker-java-buildpack/actions/workflows/build.yml/badge.svg?branch=jdk8)](https://github.com/aem-design/docker-java-buildpack/actions/workflows/build.yml)[![github license](https://img.shields.io/github/license/aem-design/docker-java-buildpack)](https://github.com/aem-design/docker-java-buildpack)
+[![build](https://github.com/aem-design/docker-java-buildpack/actions/workflows/build.yml/badge.svg?branch=ubuntu)](https://github.com/aem-design/docker-java-buildpack/actions/workflows/build.yml)[![github license](https://img.shields.io/github/license/aem-design/docker-java-buildpack)](https://github.com/aem-design/docker-java-buildpack)
 [![github license](https://img.shields.io/github/license/aem-design/docker-java-buildpack)](https://github.com/aem-design/docker-java-buildpack)
 [![github issues](https://img.shields.io/github/issues/aem-design/docker-java-buildpack)](https://github.com/aem-design/docker-java-buildpack)
 [![github last commit](https://img.shields.io/github/last-commit/aem-design/docker-java-buildpack)](https://github.com/aem-design/docker-java-buildpack)
