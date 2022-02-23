@@ -33,20 +33,19 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 ENV REQUIRED_PACKAGES \
+    build-essential \
     curl \
     tar \
     zip \
     unzip \
     ruby \
     rsync \
-    python3-devel \
+    python3-dev \
     python3-setuptools \
     python3-pip \
     autoconf \
-    gcc-c++ \
     make \
     gcc \
-    openssl-devel \
     openssh-server \
     vim \
     git \
@@ -56,22 +55,18 @@ ENV REQUIRED_PACKAGES \
     ca-certificates \
     chrpath \
     fontconfig \
-    freetype \
-    libfreetype.so.6 \
-    libfontconfig.so.1 \
-    libstdc++.so.6 \
-    ImageMagick \
-    ImageMagick-devel \
-    libcurl-devel \
-    libffi \
-    libffi-devel \
-    libtool-ltdl \
-    libtool-ltdl-devel \
-    libpng-devel \
+    libfreetype-dev \
+    libfontconfig \
+    libstdc++-10-dev \
+    imagemagick \
+    libcurl4-openssl-dev \
+    libffi-dev \
+    libltdl-dev \
+    libpng-dev \
     pngquant \
     sudo \
     gnupg2 \
-    libwebp \
+    libwebp-dev \
     yarn \
     ansible \
     jq
@@ -82,32 +77,20 @@ RUN \
 
 RUN \
     echo "==> Setup packages..." && \
-    dnf update -y && \
-    dnf repolist && \
-    dnf --enablerepo=extras install -y epel-release dnf-plugins-core && \
-    dnf config-manager --set-enabled powertools && \
-    dnf repolist && \
-    dnf groupinfo "Development Tools" && \
-    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-
-RUN dnf check-update -y || { rc=$?; [ "$rc" -eq 100 ] && exit 0; exit "$rc"; }
+    apt-get update -y
 
 RUN \
-    echo "==> Install packages DNF..." && \
-    dnf group install -y "Development Tools" && \
-    dnf --enablerepo=powertools install -y ${REQUIRED_PACKAGES} && \
+    echo "==> Install packages..." && \
+    apt-get install -y ${REQUIRED_PACKAGES} && \
     ln -s /usr/bin/python3 /usr/bin/python
 
 RUN \
     echo "==> Install Docker Client" && \
-    dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && \
-    dnf install -y docker-ce-cli && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get install -y docker-ce-cli && \
     pip3 install --upgrade pip && \
     pip install docker-compose
-
-RUN \
-    echo "==> Enable Java packages & tools..." && \
-    dnf module enable -y javapackages-tools
 
 RUN \
     echo "==> Install SDKMAN..." && \
