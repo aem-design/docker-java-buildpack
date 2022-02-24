@@ -28,6 +28,7 @@ ENV RVM_USER=${RVM_USER}
 ENV RVM_VERSION=${RVM_VERSION}
 ENV HOME="/build"
 ENV DEBIAN_FRONTEND=noninteractive
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
 
 RUN mkdir -p $HOME
 
@@ -83,6 +84,7 @@ RUN \
 
 RUN \
     echo "==> Install packages..." && \
+    apt install software-properties-common && \
     apt-get install -y ${REQUIRED_PACKAGES} && \
     ln -s /usr/bin/python3 /usr/bin/python
 
