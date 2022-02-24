@@ -103,7 +103,7 @@ RUN \
 RUN curl -s https://get.sdkman.io | bash
 
 RUN \
-    source "$HOME/.sdkman/bin/sdkman-init.sh" && \
+    . "$HOME/.sdkman/bin/sdkman-init.sh" && \
     sdk version && \
     sdk install groovy $GROOVY_VERSION
 
@@ -111,7 +111,7 @@ RUN \
     echo "==> Install nvm..." && \
     export NVM_DIR="/build/.nvm" && \
     mkdir -p ${NVM_DIR} && touch .bashrc && \
-    curl -o- ${NVM_URL} | bash && source $HOME/.bashrc && \
+    curl -o- ${NVM_URL} | bash && . $HOME/.bashrc && \
     nvm install $NODE_VERSION && nvm use --delete-prefix ${NODE_VERSION} && \
     echo "==> Install npm packages..." && \
     npm install -g npm
@@ -154,7 +154,7 @@ RUN \
     echo "==> Source RVM..." && \
     echo "export PATH=\$PATH:/usr/local/rvm/bin">>/build/.bashrc && \
     export PATH=$PATH:/usr/local/rvm/bin && \
-    source /usr/local/rvm/scripts/rvm && \
+    . /usr/local/rvm/scripts/rvm && \
     echo "==> Reload RVM..." && \
     touch /etc/rvmrc && \
     echo "rvm_silence_path_mismatch_check_flag=1" >> /etc/rvmrc && \
