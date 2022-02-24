@@ -12,7 +12,7 @@ LABEL   os="ubuntu" \
 ARG CHROME_DRIVER_VERSION="99.0.4844.35"
 ARG CHROME_DRIVER_FILE="chromedriver_linux64.zip"
 ARG CHROME_DRIVER_URL="https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/${CHROME_DRIVER_FILE}"
-ARG CHROME_FILE="google-chrome-stable_current_x86_64.rpm"
+ARG CHROME_FILE="google-chrome-stable_current_amd64.deb"
 ARG CHROME_URL="https://dl.google.com/linux/direct/${CHROME_FILE}"
 ARG NODE_VERSION="17.6.0"
 ARG NVM_URL="https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
@@ -102,10 +102,7 @@ RUN \
 
 RUN curl -s https://get.sdkman.io | bash
 
-RUN \
-    . "$HOME/.sdkman/bin/sdkman-init.sh" && \
-    sdk version && \
-    sdk install groovy $GROOVY_VERSION
+RUN ["/bin/bash","-c","source $HOME/.sdkman/bin/sdkman-init.sh && sdk install groovy $GROOVY_VERSION"]
 
 RUN \
     echo "==> Install nvm..." && \
@@ -119,7 +116,7 @@ RUN \
 RUN \
     echo "==> Install chrome..." && \
     wget ${CHROME_DRIVER_URL} && unzip ${CHROME_DRIVER_FILE} && mv chromedriver /usr/bin && rm -f ${CHROME_DRIVER_FILE} && \
-    wget ${CHROME_URL} && yum install -y Xvfb ${CHROME_FILE} && rm -f ${CHROME_FILE}
+    wget ${CHROME_URL} && apt-get install -y xvfb && apt install -y ./${CHROME_FILE} && rm -f ${CHROME_FILE}
 
 RUN \
     echo "==> Install maven..." && \
@@ -133,18 +130,6 @@ RUN \
     echo "==> Disable requiretty..." && \
     sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers && \
     echo "ALL  ALL=(ALL) NOPASSWD: ALL">>/etc/sudoers
-
-RUN \
-    echo "==> Set Oracle JDK as Alternative..." && \
-    rm -rf /var/lib/alternatives/java && \
-    rm -rf /var/lib/alternatives/jar && \
-    rm -rf /var/lib/alternatives/javac && \
-    alternatives --install "/usr/bin/java" "java" "/usr/java/default/bin/java" 2 && \
-    alternatives --install "/usr/bin/jar" "jar" "/usr/java/default/bin/jar" 2 && \
-    alternatives --install "/usr/bin/javac" "javac" "/usr/java/default/bin/javac" 2 && \
-    alternatives --set java "/usr/java/default/bin/java" && \
-    alternatives --set jar "/usr/java/default/bin/jar" && \
-    alternatives --set javac "/usr/java/default/bin/javac"
 
 RUN \
     echo "==> Install RVM..." && \
