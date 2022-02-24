@@ -6,7 +6,7 @@
 # IMAGE_NAME specifies a name of the candidate image used for testing.
 # The image has to be available before this script is executed.
 #
-IMAGE_NAME=${1:-aemdesign/centos-java-buildpack}
+IMAGE_NAME=${1:-aemdesign/java-buildpack}
 FLAG_DEBUG=${2:-true}
 IP=$(which ip)
 if [[ -z $IP ]]; then
@@ -95,11 +95,11 @@ printDebug() {
 
 test_usage_java() {
   printLine "Testing java"
-  CHECK="1.8"
+  CHECK="11."
 
   printLine "Starting Container"
 
-  OUTPUT=$(docker run --rm ${IMAGE_NAME} java -version 2>&1 | grep 'java version' | sed -e 's/.*java version "\(.*\)".*/\1/')
+  OUTPUT=$(docker run --rm ${IMAGE_NAME} java --version 2>&1 | grep 'java version' | sed -e 's/.*java version "\(.*\)".*/\1/')
 
   if [[ "$OUTPUT" != *"$CHECK"* ]]; then
       printResult "error"

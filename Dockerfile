@@ -1,4 +1,4 @@
-FROM    aemdesign/oracle-jdk:jdk8-ubuntu
+FROM    aemdesign/oracle-jdk:jdk11-ubuntu
 
 LABEL   os="ubuntu" \
         container.description="centos with java build pack" \
