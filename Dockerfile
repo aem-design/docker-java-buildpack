@@ -69,6 +69,7 @@ ENV REQUIRED_PACKAGES \
     libwebp-dev \
     yarn \
     ansible \
+    tzdata \
     jq
 
 RUN \
