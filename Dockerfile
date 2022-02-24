@@ -84,7 +84,7 @@ RUN \
 
 RUN \
     echo "==> Install packages..." && \
-    apt install software-properties-common && \
+    apt-get install -y software-properties-common && \
     apt-get install -y ${REQUIRED_PACKAGES} && \
     ln -s /usr/bin/python3 /usr/bin/python
 
