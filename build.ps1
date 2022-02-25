@@ -2,7 +2,7 @@ Param(
   [string]$LOG_PATH = "${PWD}\logs",
   [string]$LOG_PEFIX = "docker",
   [string]$LOG_SUFFIX = ".log",
-  [string]$TAG = "jdk8-ubuntu",
+  [string]$TAG = "jdk11-ubuntu",
   [string]$FILE = "Dockerfile",
   [string]$FUNCTIONS_URI = "https://github.com/aem-design/aemdesign-docker/releases/latest/download/functions.ps1",
   [string]$COMMAND = "docker buildx build . -f .\${FILE} -t ${TAG}",
