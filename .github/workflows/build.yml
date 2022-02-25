@@ -61,7 +61,7 @@ jobs:
       - name: Run docker image analysis
         uses: yuichielectric/dive-action@0.0.4
         with:
-          image: {{ env.IMAGE }}:{{ env.GIT_BRANCH }}
+          image: ${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
           config-file: ${{ github.workspace }}/.dive-ci.yml
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
