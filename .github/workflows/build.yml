@@ -38,6 +38,14 @@ jobs:
           docker build --pull --squash -t $IMAGE:$GIT_BRANCH .
           (cd test && bash ./run_tests.sh "$IMAGE:$GIT_BRANCH")
           docker images
+
+      - name: Run docker image analysis
+        uses: yuichielectric/dive-action@0.0.4
+        with:
+          image: ${{ env.IMAGE }}:{{ env.GIT_BRANCH }}
+          config-file: ${{ github.workspace }}/.dive-ci.yml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: login to docker registry
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ${DOCKER_REGISTRY} -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
