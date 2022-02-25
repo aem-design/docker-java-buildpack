@@ -72,7 +72,18 @@ ENV REQUIRED_PACKAGES \
     yarn \
     ansible \
     tzdata \
-    jq
+    jq \
+    libgtk2.0-0 \
+    libgtk-3-0 \
+    libgbm-dev \
+    libnotify-dev \
+    libgconf-2-4 \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    libxtst6 \
+    xauth \
+    xvfb
 
 RUN \
     echo "==> Make dirs..." && \
@@ -116,7 +127,7 @@ RUN \
 RUN \
     echo "==> Install chrome..." && \
     wget ${CHROME_DRIVER_URL} && unzip ${CHROME_DRIVER_FILE} && mv chromedriver /usr/bin && rm -f ${CHROME_DRIVER_FILE} && \
-    wget ${CHROME_URL} && apt-get install -y xvfb && apt install -y ./${CHROME_FILE} && rm -f ${CHROME_FILE}
+    wget ${CHROME_URL} && apt install -y ./${CHROME_FILE} && rm -f ${CHROME_FILE}
 
 RUN \
     echo "==> Install maven..." && \
