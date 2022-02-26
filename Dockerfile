@@ -1,4 +1,4 @@
-FROM    aemdesign/oracle-jdk:jdk11
+FROM    aemdesign/oracle-jdk:jdk8
 
 LABEL   os="debian" \
         container.description="centos with java build pack" \

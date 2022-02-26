@@ -95,7 +95,7 @@ printDebug() {
 
 test_usage_java() {
   printLine "Testing java"
-  CHECK="11."
+  CHECK="1.8"
 
   printLine "Starting Container"
 

@@ -48,8 +48,6 @@ jobs:
           context: .
           platforms: linux/amd64
           load: true
-          build-args: |
-            "FILE_NAME=jdk-8u321-linux-x64.tar.gz"
           tags: |
             ${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
