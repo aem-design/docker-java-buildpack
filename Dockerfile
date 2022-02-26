@@ -1,6 +1,6 @@
-FROM    aemdesign/oracle-jdk:jdk11-ubuntu
+FROM    aemdesign/oracle-jdk:jdk11
 
-LABEL   os="ubuntu" \
+LABEL   os="debian" \
         container.description="centos with java build pack" \
         version="1.0.0" \
         imagename="java-buildpack" \
@@ -83,7 +83,12 @@ ENV REQUIRED_PACKAGES \
     libasound2 \
     libxtst6 \
     xauth \
-    xvfb
+    xvfb \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common
 
 RUN \
     echo "==> Make dirs..." && \
@@ -101,8 +106,8 @@ RUN \
 
 RUN \
     echo "==> Install Docker Client" && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian  $(lsb_release -cs) stable" && \
     apt-get install -y docker-ce-cli && \
     pip3 install --upgrade pip && \
     pip install docker-compose
