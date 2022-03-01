@@ -172,3 +172,5 @@ RUN \
     touch $HOME/.bash_profile && echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> $HOME/.bash_profile
 
 RUN useradd -m --no-log-init -r -g rvm ${RVM_USER}
+
+SHELL ["/bin/bash", "-l", "-c"]
