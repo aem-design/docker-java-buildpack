@@ -88,7 +88,8 @@ ENV REQUIRED_PACKAGES \
     ca-certificates \
     curl \
     gnupg2 \
-    software-properties-common
+    software-properties-common \
+    lsb-release
 
 RUN \
     echo "==> Make dirs..." && \
@@ -100,15 +101,16 @@ RUN \
 
 RUN \
     echo "==> Install packages..." && \
-    apt-get install -y software-properties-common && \
     apt-get install -y ${REQUIRED_PACKAGES} && \
     ln -s /usr/bin/python3 /usr/bin/python
 
 RUN \
     echo "==> Install Docker Client" && \
-    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian  $(lsb_release -cs) stable" && \
-    apt-get install -y docker-ce-cli && \
+    echo "==> OS Release: $(lsb_release -cs)" && \
+    echo "==> CPU: $(dpkg --print-architecture)" && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt-get update && apt-get install -y docker-ce-cli && \
     pip3 install --upgrade pip && \
     pip install docker-compose
 
