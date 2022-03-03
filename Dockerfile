@@ -173,4 +173,3 @@ RUN \
 
 RUN useradd -m --no-log-init -r -g rvm ${RVM_USER}
 
-SHELL ["/bin/bash", "-l", "-c"]
