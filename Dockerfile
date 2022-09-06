@@ -41,6 +41,7 @@ ENV REQUIRED_PACKAGES \
     zip \
     unzip \
     ruby \
+    ruby-dev \
     rsync \
     python3-dev \
     python3-setuptools \
