@@ -9,20 +9,20 @@ LABEL   os="ubuntu" \
         test.command.verify="v18.20.4"
 
 #https://chromedriver.storage.googleapis.com/
-ARG CHROME_DRIVER_VERSION="99.0.4844.35"
+ARG CHROME_DRIVER_VERSION="100.0.4896.20"
 ARG CHROME_DRIVER_FILE="chromedriver_linux64.zip"
 ARG CHROME_DRIVER_URL="https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/${CHROME_DRIVER_FILE}"
 ARG CHROME_FILE="google-chrome-stable_current_amd64.deb"
 ARG CHROME_URL="https://dl.google.com/linux/direct/${CHROME_FILE}"
 ARG NODE_VERSION="18.20.4"
 ARG NVM_URL="https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
-ARG MAVEN_VERSION="3.6.3"
+ARG MAVEN_VERSION="3.9.9"
 ARG MAVEN_FILE="apache-maven-${MAVEN_VERSION}-bin.zip"
 ARG MAVEN_URL="http://mirrors.sonic.net/apache/maven/maven-3/${MAVEN_VERSION}/binaries/${MAVEN_FILE}"
 ARG RVM_VERSION=stable
 ARG RVM_USER=rvm
-ARG RVM_INSTALL_VERSION="3.1.1"
-ARG GROOVY_VERSION="3.0.7"
+ARG RVM_INSTALL_VERSION="3.3.5"
+ARG GROOVY_VERSION="4.0.23"
 
 ENV RVM_USER=${RVM_USER}
 ENV RVM_VERSION=${RVM_VERSION}
