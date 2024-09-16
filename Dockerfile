@@ -6,7 +6,7 @@ LABEL   os="ubuntu" \
         imagename="java-buildpack" \
         maintainer="devops@aem.design" \
         test.command="source ~/.nvm/nvm.sh; node --version" \
-        test.command.verify="v17.6.0"
+        test.command.verify="v18.20.4"
 
 #https://chromedriver.storage.googleapis.com/
 ARG CHROME_DRIVER_VERSION="99.0.4844.35"
@@ -14,7 +14,7 @@ ARG CHROME_DRIVER_FILE="chromedriver_linux64.zip"
 ARG CHROME_DRIVER_URL="https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/${CHROME_DRIVER_FILE}"
 ARG CHROME_FILE="google-chrome-stable_current_amd64.deb"
 ARG CHROME_URL="https://dl.google.com/linux/direct/${CHROME_FILE}"
-ARG NODE_VERSION="17.6.0"
+ARG NODE_VERSION="18.20.4"
 ARG NVM_URL="https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
 ARG MAVEN_VERSION="3.6.3"
 ARG MAVEN_FILE="apache-maven-${MAVEN_VERSION}-bin.zip"
