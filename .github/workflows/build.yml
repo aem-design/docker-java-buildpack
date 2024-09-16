@@ -63,7 +63,7 @@ jobs:
       - name: Run docker image analysis
         uses: yuichielectric/dive-action@0.0.4
         with:
-          image: ${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
+          image: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
           config-file: ${{ env.GITHUB_WORKSPACE }}/.dive-ci.yml
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
