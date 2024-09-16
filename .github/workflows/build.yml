@@ -61,7 +61,7 @@ jobs:
           cd test && bash ./run_tests.sh "ghcr.io/$GITHUB_REPOSITORY_OWNER/$IMAGE:$GIT_BRANCH"
 
       - name: Run docker image analysis
-        uses: MaxymVlasov/dive-action@1.0.1
+        uses: MaxymVlasov/dive-action@v1.0.1
         with:
           image: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE }}:${{ env.GIT_BRANCH }}
           config-file: ${{ env.GITHUB_WORKSPACE }}/.dive-ci.yml
