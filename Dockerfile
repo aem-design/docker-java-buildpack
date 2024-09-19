@@ -70,7 +70,6 @@ ENV REQUIRED_PACKAGES \
     gnupg2 \
     libwebp-dev \
     yarn \
-    ansible \
     tzdata \
     jq \
     libgtk2.0-0 \
@@ -159,6 +158,11 @@ RUN \
     rvm reload && \
     rvm requirements run && \
     rvm install ${RVM_INSTALL_VERSION}
+
+RUN \
+    echo "==> Install Ansible..." && \
+    add-apt-repository --yes --update ppa:ansible/ansible && \
+    apt-get install -y ansible
 
 RUN \
     echo "==> Update scripts" && \
