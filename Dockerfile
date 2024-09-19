@@ -21,7 +21,7 @@ ARG MAVEN_FILE="apache-maven-${MAVEN_VERSION}-bin.zip"
 ARG MAVEN_URL="http://mirrors.sonic.net/apache/maven/maven-3/${MAVEN_VERSION}/binaries/${MAVEN_FILE}"
 ARG RVM_VERSION=stable
 ARG RVM_USER=rvm
-ARG RVM_INSTALL_VERSION="3.3.5"
+ARG RVM_INSTALL_VERSION="3.5.19"
 ARG GROOVY_VERSION="4.0.23"
 
 ENV RVM_USER=${RVM_USER}
@@ -157,7 +157,9 @@ RUN \
     echo "bundler" >> /usr/local/rvm/gemsets/global.gems && \
     rvm reload && \
     rvm requirements run && \
-    rvm install ${RVM_INSTALL_VERSION}
+    rvm install ${RVM_INSTALL_VERSION} && \
+    rvm use ${RVM_INSTALL_VERSION} --default && \
+    gem install bundler
 
 RUN \
     echo "==> Install Ansible..." && \
